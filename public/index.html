@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHA-256 Brute Force</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
+  <style>
+    html, body {
+      height: 100%; /* Ensure the body fills the screen */
+      margin: 0;
+      padding: 0;
+    }
+  
+    #status {
+      background-color: #000;
+      color: #0f0;
+      padding: 10px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      flex: 1; /* Allows it to grow and fill remaining space */
+    }
+  
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* Full screen height */
+    }
+  
+    .buttons {
+      margin-top: 10px;
+    }
+  
+    .not-ok {
+      color: red;
+    }
+  
+    .ok {
+      color: green;
+    }
+  </style>
+  
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+          <h1 class="title">SHA-256 Brute Force</h1>
+      
+          <div class="field">
+            <label class="label">Target Hash</label>
+            <div class="control">
+              <input id="hashInput" class="input" type="text" placeholder="Enter SHA-256 hash" />
+            </div>
+          </div>
+      
+          <div class="buttons">
+            <button id="startBtn" class="button is-primary">Start</button>
+            <button id="stopBtn" class="button is-danger">Stop</button>
+          </div>
+      
+          <div id="status"></div> <!-- Console -->
+        </div>
+      </section>
+      
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const hashInput = document.getElementById('hashInput');
+    const statusDiv = document.getElementById('status');
+
+    const ws = new WebSocket(`wss://${location.host}`);
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      const { time, attempts, target, hash, match } = data;
+      const statusLine = `${time} - Attempts: ${attempts} - Target: ${target} - Hash: ${hash} - Status: ` +
+                         `<span class="${match ? 'ok' : 'not-ok'}">${match ? 'OK' : 'Not OK'}</span>\n`;
+      statusDiv.innerHTML += statusLine;
+      statusDiv.scrollTop = statusDiv.scrollHeight;
+    };
+
+    startBtn.onclick = async () => {
+      const hashValue = hashInput.value.trim();
+      if (!hashValue) {
+        alert('Please enter a target SHA-256 hash.');
+        return;
+      }
+
+      const response = await fetch('/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetHash: hashValue }),
+      });
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error('Failed to start:', error);
+      }
+    };
+
+    stopBtn.onclick = async () => {
+      await fetch('/stop', { method: 'POST' });
+    };
+  </script>
+</body>
+</html>
