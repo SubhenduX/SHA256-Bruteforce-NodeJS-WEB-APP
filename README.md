@@ -1,4 +1,3 @@
-Here's a complete **`README.md`** for your GitHub repository. It includes an overview of the project, how to set it up, and a credit section linking to `indexeddev.com`.
 
 ---
 
