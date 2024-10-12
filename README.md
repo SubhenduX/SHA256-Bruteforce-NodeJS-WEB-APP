@@ -3,7 +3,6 @@
 
 ## **README.md**
 
-```markdown
 # SHA-256 Brute Force Web App
 
 A simple web application to perform a **brute-force attack** on SHA-256 hashes. This project is built using **Node.js**, **Express.js**, **WebSocket**, and **Bulma CSS** for styling.
@@ -48,7 +47,7 @@ A simple web application to perform a **brute-force attack** on SHA-256 hashes. 
 4. **Access the App in Your Browser:**
    Open your browser and go to `http://localhost:3000`.
 
----
+
 
 ## **Usage**
 
@@ -96,4 +95,4 @@ Developed by [IndexedDev](https://indexeddev.com).
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
 
----
+
