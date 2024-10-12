@@ -21,7 +21,7 @@ A simple web application to perform a **brute-force attack** on SHA-256 hashes. 
 ---
 
 ## **Screenshots**
-![Screenshot]([https://via.placeholder.com/800x400?text=SHA-256+Brute+Force+Web+App](https://s.imgur.com/desktop-assets/desktop-assets/icon-upload-download.eec2e0a0913f4e0a7fe1.svg))  
+![Screenshot](https://s.imgur.com/desktop-assets/desktop-assets/icon-upload-download.eec2e0a0913f4e0a7fe1.svg)  
 *(Replace with actual screenshot of your web app)*
 
 ---
