@@ -21,8 +21,7 @@ A simple web application to perform a **brute-force attack** on SHA-256 hashes. 
 ---
 
 ## **Screenshots**
-![Screenshot](https://s.imgur.com/desktop-assets/desktop-assets/icon-upload-download.eec2e0a0913f4e0a7fe1.svg)  
-*(Replace with actual screenshot of your web app)*
+![Screenshot](https://github.com/SubhenduX/SHA256-Bruteforce-NodeJS-WEB-APP/blob/main/public/image(1).png?raw=true)
 
 ---
 
